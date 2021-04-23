@@ -1,0 +1,16 @@
+{
+  "name": "introducao-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/CarlosEduardoLS/introducao-typescript.git",
+  "author": "Carlos Eduardo de Lima Salvador <carlos.eduardo@ceresinvestimentos.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --quiet --clear ./src/main.ts"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.4"
+  }
+}
