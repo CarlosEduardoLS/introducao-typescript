@@ -215,3 +215,53 @@ type OmitPreview = Omit<Post, 'id'>
 
 let pick: PickPreview
 let omit: OmitPreview
+
+//Utilidade & Extras
+
+import { sum } from './calculator.js'
+
+console.log(sum(2, 3))
+
+import axios from 'axios'
+
+axios.get('', {})
+
+import Simplebar from 'simplebar'
+
+const content = document.querySelector('#content') as HTMLInputElement
+
+const simplebar = new Simplebar(content, { autoHide: true })
+
+// const onscreen = require('onscreen')
+
+import onscreen from 'onscreen'
+
+import users from '@/controllers/http/Users'
+
+users()
+
+//Decorators
+
+function logger(text: string) {
+  return (target: any) => {
+    console.log(target, text)
+  }
+}
+
+@logger('Cataline')
+class API {}
+
+//Decorator - Fazer anotação da versão da API
+
+function setApiVersion(apiVersion: string) {
+  return (constructor: any) => {
+    return class extends constructor {
+      version = apiVersion
+    }
+  }
+}
+
+@setApiVersion('1.0.0')
+class Version {}
+
+console.log(new Version())
