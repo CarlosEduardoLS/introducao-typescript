@@ -103,3 +103,115 @@ window.addEventListener('click', event => {
 const inputName = document.querySelector('#name') as HTMLInputElement
 
 inputName.value
+
+//Interfaces
+
+type UF = 'PE' | 'SP' | 'MG'
+
+interface User {
+  name: string
+  address: {
+    city: string
+    UF: UF
+  }
+}
+
+function showCity(user: User) {
+  user.address.UF = 'MG'
+  return user.address.city
+}
+
+//Propriedades Opicionais
+
+interface User2 {
+  name: string
+  address?: {
+    city: string
+    UF: UF
+  }
+}
+
+function showCity2(user: User2) {
+  return user.address ? user.address.city : 'Não existe'
+}
+
+function showCity3(user: User2) {
+  return user.address?.city
+}
+
+//Propriedades Readonly
+
+interface User3 {
+  readonly name: string
+  age: number
+}
+
+let user2: User3 = {
+  name: 'Yung Silva',
+  age: 22,
+}
+
+user2.age = 23
+// user2.name = 'João Silva' -> não é possível alterar o valor
+
+//Extends -> 'Unir 2 intefaces' e Implements -> 'Criar uma classe à partir de uma interface'
+
+interface Veiculo {
+  rodas: number
+  acelerar: () => void
+  frear: () => void
+  marchaRe?: () => void
+}
+
+interface Moto extends Veiculo {
+  capacete: boolean
+  empinar: () => void
+}
+
+let bross: Moto = {
+  rodas: 2,
+  capacete: true,
+  acelerar: () => console.log('Acelerar'),
+  empinar: () => console.log('Empinar'),
+  frear: () => console.log('Frear'),
+}
+
+bross.acelerar = () => {
+  console.log('Acelerar mais rápido')
+}
+
+class CriarVeiculo implements Veiculo {
+  rodas: number
+
+  constructor(rodas: number) {
+    this.rodas = rodas
+  }
+
+  acelerar() {
+    console.log('Acelerar')
+  }
+
+  frear() {
+    console.log('Acelerar')
+  }
+}
+
+//Pick & Omit
+
+interface Post {
+  id: number
+  title: string
+  description: string
+  shortDescription: string
+  slug: string
+  comments: any[]
+  likes: number
+  views: number
+  shares: number
+}
+
+type PickPreview = Pick<Post, 'id' | 'title'>
+type OmitPreview = Omit<Post, 'id'>
+
+let pick: PickPreview
+let omit: OmitPreview
